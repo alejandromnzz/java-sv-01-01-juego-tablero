@@ -37,22 +37,41 @@ public class Main {
         System.out.println("Te puedes desplazar con las letras WASD");
 
         Scanner lector = new Scanner(System.in);
-        System.out.println("Dime una letra");
+        System.out.println("Dime una letra: ");
         char desplazamiento = lector.next().charAt(0);
 
         int filaYoda = 0;
         int columnaYoda = 0;
-        matriz[filaYoda][columnaYoda]=YODA;
-        if (desplazamiento =='D'){
-            columnaYoda += 1;
-            matriz[filaYoda][columnaYoda]=YODA;
-        }
 
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz.length; j++) {
-                System.out.print(matriz[i][j] + " ");
+        while (desplazamiento != 'F'){
+
+            System.out.println("Dime una letra");
+            desplazamiento = lector.next().charAt(0);
+
+            if (desplazamiento =='D'){
+                columnaYoda += 1;
+                matriz[filaYoda][columnaYoda]=YODA;
+                columnaYoda-= 1;
+            }else if (desplazamiento =='W'){
+                filaYoda -= 1;
+                matriz[filaYoda][columnaYoda]=YODA;
+                filaYoda += 1;
+            }else if (desplazamiento =='A'){
+                columnaYoda -= 1;
+                matriz[filaYoda][columnaYoda]=YODA;
+                columnaYoda += 1;
+            }else if (desplazamiento =='S'){
+                filaYoda += 1;
+                matriz[filaYoda][columnaYoda]=YODA;
+                filaYoda -= 1;
             }
-            System.out.println(" ");
+
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz.length; j++) {
+                    System.out.print(matriz[i][j] + " ");
+                }
+                System.out.println(" ");
+            }
         }
     }
 }
