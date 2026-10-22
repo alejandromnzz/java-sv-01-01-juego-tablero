@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args){
         char[][] matriz = new char[10][10];
 
-        int vidas = 1;
+        int vidas = 3;
 
         for (int i = 0; i < matriz.length ; i++) {
             for (int j = 0; j < matriz.length; j++) {
@@ -24,9 +24,15 @@ public class Main {
         int n1 = aleatorio.nextInt(10);
         int n2 = aleatorio.nextInt(10);
 
-        matriz[n1][n2] = 'M';
+        for (int i = 0; i < 8; i++) {
+            do {
+                n1 = aleatorio.nextInt(10);
+                n2 = aleatorio.nextInt(10);
+            } while (matriz[n1][n2]!='*');
+            matriz[n1][n2] = 'M';
+        }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             do {
                 n1 = aleatorio.nextInt(10);
                 n2 = aleatorio.nextInt(10);
@@ -72,8 +78,52 @@ public class Main {
                     continue;
             }
 
-            if (matriz[fila_Y1][column_Y1]=='M' || matriz[fila_Y1][column_Y1]=='P' ){
+            if (matriz[fila_Y1][column_Y1]=='M'){
+                System.out.println("Te has chocado contra un muro. Pierdes una vida.");
                 vidas--;
+            }
+
+            if (matriz[fila_Y1][column_Y1]=='P'){
+                System.out.println("Te has chocado contra una poción. Responde correctamente y ganarás una vida, falla la respuesta y perderas una vida.");
+
+                int[] soluciones = new int[3];
+                soluciones[1] = 56;
+                soluciones[2] = 9;
+                soluciones[3] = 17;
+
+                int eleccion = aleatorio.nextInt(3);
+
+                if (eleccion == 0){
+                    System.out.println("¿Cuánto es la multiplicación de 7 x 8?");
+                    int respuesta = lector.nextInt();
+                    if (respuesta == soluciones[eleccion]){
+                        vidas++;
+                        System.out.println("Has ganado una vida.");
+                    }else{
+                        vidas--;
+                        System.out.println("Has perdido una vida");
+                    }
+                } else if (eleccion == 1) {
+                    System.out.println("¿Cuánto es la resta de 27 - 18?");
+                    int respuesta = lector.nextInt();
+                    if (respuesta == soluciones[eleccion]){
+                        vidas++;
+                        System.out.println("Has ganado una vida.");
+                    }else{
+                        vidas--;
+                        System.out.println("Has perdido una vida");
+                    }
+                }else if (eleccion == 2){
+                    System.out.println("¿Cuánto es la división de 136 / 8?");
+                    int respuesta = lector.nextInt();
+                    if (respuesta == soluciones[eleccion]){
+                        vidas++;
+                        System.out.println("Has ganado una vida.");
+                    }else{
+                        vidas--;
+                        System.out.println("Has perdido una vida");
+                    }
+                }
             }
 
             matriz[filaYoda][columnaYoda]= '*';
