@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,7 +6,7 @@ public class Main {
     public static void main(String[] args){
         char[][] matriz = new char[10][10];
 
-        int vidas = 10;
+        int vidas = 1;
 
         for (int i = 0; i < matriz.length ; i++) {
             for (int j = 0; j < matriz.length; j++) {
@@ -33,38 +34,51 @@ public class Main {
             matriz[n1][n2] = 'P';
         }
 
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println(" ");
+        }
+
         System.out.println("Tu jugador se encuentra en la casilla 0,0");
         System.out.println("Te puedes desplazar con las letras WASD");
 
         Scanner lector = new Scanner(System.in);
-        System.out.println("Dime una letra: ");
-        char desplazamiento = lector.next().charAt(0);
 
         int filaYoda = 0;
         int columnaYoda = 0;
 
-        while (desplazamiento != 'F'){
+        while (vidas != 0){
 
             System.out.println("Dime una letra");
-            desplazamiento = lector.next().charAt(0);
+            char desplazamiento = lector.next().charAt(0);
+
+            int column_Y1 = columnaYoda;
+            int fila_Y1 = filaYoda;
 
             if (desplazamiento =='D'){
-                columnaYoda += 1;
-                matriz[filaYoda][columnaYoda]=YODA;
-                columnaYoda-= 1;
+                column_Y1 ++;
             }else if (desplazamiento =='W'){
-                filaYoda -= 1;
-                matriz[filaYoda][columnaYoda]=YODA;
-                filaYoda += 1;
+                fila_Y1 --;
             }else if (desplazamiento =='A'){
-                columnaYoda -= 1;
-                matriz[filaYoda][columnaYoda]=YODA;
-                columnaYoda += 1;
+                column_Y1 --;
             }else if (desplazamiento =='S'){
-                filaYoda += 1;
-                matriz[filaYoda][columnaYoda]=YODA;
-                filaYoda -= 1;
+                fila_Y1 ++;
             }
+
+            if (fila_Y1 < 0 || fila_Y1 >= matriz.length || column_Y1 < 0 || column_Y1 >= matriz.length){
+                System.out.println("HAS LLEGADO AL LIMITE");
+                continue;
+            }
+
+            if (matriz[fila_Y1][column_Y1]=='M' || matriz[fila_Y1][column_Y1]=='P' ){
+                vidas--;
+            }
+
+            filaYoda = fila_Y1;
+            columnaYoda = column_Y1;
+            matriz[filaYoda][columnaYoda]= YODA;
 
             for (int i = 0; i < matriz.length; i++) {
                 for (int j = 0; j < matriz.length; j++) {
@@ -73,5 +87,7 @@ public class Main {
                 System.out.println(" ");
             }
         }
+
+        System.out.println("HAS PERDIDO");
     }
 }
