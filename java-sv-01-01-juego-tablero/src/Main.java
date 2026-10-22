@@ -81,15 +81,17 @@ public class Main {
             if (matriz[fila_Y1][column_Y1]=='M'){
                 System.out.println("Te has chocado contra un muro. Pierdes una vida.");
                 vidas--;
+                System.out.println("Has perdido una vida");
+                continue;
             }
 
             if (matriz[fila_Y1][column_Y1]=='P'){
                 System.out.println("Te has chocado contra una poción. Responde correctamente y ganarás una vida, falla la respuesta y perderas una vida.");
 
                 int[] soluciones = new int[3];
-                soluciones[1] = 56;
-                soluciones[2] = 9;
-                soluciones[3] = 17;
+                soluciones[0] = 56;
+                soluciones[1] = 9;
+                soluciones[2] = 17;
 
                 int eleccion = aleatorio.nextInt(3);
 
