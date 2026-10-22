@@ -69,13 +69,14 @@ public class Main {
 
             if (fila_Y1 < 0 || fila_Y1 >= matriz.length || column_Y1 < 0 || column_Y1 >= matriz.length){
                 System.out.println("HAS LLEGADO AL LIMITE");
-                continue;
+                    continue;
             }
 
             if (matriz[fila_Y1][column_Y1]=='M' || matriz[fila_Y1][column_Y1]=='P' ){
                 vidas--;
             }
 
+            matriz[filaYoda][columnaYoda]= '*';
             filaYoda = fila_Y1;
             columnaYoda = column_Y1;
             matriz[filaYoda][columnaYoda]= YODA;
